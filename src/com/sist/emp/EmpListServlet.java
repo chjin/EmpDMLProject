@@ -66,7 +66,10 @@ public class EmpListServlet extends HttpServlet {
         for(EmpDTO empDTO : empDTOList){
             printWriter.println("<tr>");
                 printWriter.println("<td align=center>" +empDTO.getEmpno()+"</td>");
-
+                printWriter.println("<td align=center>" +empDTO.getEname()+ "</td>");
+                printWriter.println("<td align=center>" +empDTO.getJob()+ "</td>");
+                printWriter.println("<td align=center>" +empDTO.getHiredate()+ "</td>");
+                printWriter.println("<td align=center>" +empDTO.getDeptno()+ "</td>");
             printWriter.println("</tr>");
         }
 

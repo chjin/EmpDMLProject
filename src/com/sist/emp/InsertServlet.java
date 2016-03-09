@@ -48,8 +48,20 @@ public class InsertServlet extends HttpServlet{
 
 
 
+                //세번째 줄 -내선임 추가  (직원등록 페이지)
+                printWriter.println("<tr>");
+                    printWriter.println("<td width=25% align=right>내선임</td>");
+                    printWriter.println("<td width=75% align=left>");
+                        printWriter.println("<select name=mgr>");
+                        printWriter.println("</select>");
+                    printWriter.println("</td>");
+                printWriter.println("<tr>");
 
-            printWriter.println("</table>");
+
+
+                //네번째 줄 -연봉 추가가
+
+           printWriter.println("</table>");
 
 
 

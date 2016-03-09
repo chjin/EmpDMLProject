@@ -37,6 +37,16 @@ public class InsertServlet extends HttpServlet{
 
 
 
+                //두번째 줄 -직위 추가
+                printWriter.println("<tr>");
+                    printWriter.println("<td width=25% align=right>직위</td>");
+                    printWriter.println("<td width=75% align=left>");
+                        printWriter.println("<select name=job>");
+                        printWriter.println("</select>");
+                    printWriter.println("</td>");
+                printWriter.println("</tr>");
+
+
 
 
             printWriter.println("</table>");

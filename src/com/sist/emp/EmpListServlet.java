@@ -81,8 +81,12 @@ public class EmpListServlet extends HttpServlet {
         printWriter.println("<table border=0 width=500 cellspacing=0>");
             printWriter.println("<tr>");
                 printWriter.println("<td align=right>");
-                    printWriter.println("<a href=EmpListServlet?Page=" +(curpage>1? curpage-1 : curpage)+ ">");
+                    printWriter.println("<a href=EmpListServlet?page=" +(curpage>1? curpage-1 : curpage)+ ">");
                     printWriter.println("이전</a>&nbsp;");
+
+                    printWriter.println("<a href=EmpListServlet?page=" +(curpage<totalpage ? curpage+1 : curpage)+ ">");
+                    printWriter.println("다음</a>&nbsp;&nbsp;&nbsp;");
+
 
                 printWriter.println("<td>");
             printWriter.println("</tr>");

@@ -131,6 +131,9 @@ public class EmpDAO {
             //전송객체 실행하기
             ResultSet resultSet=preparedStatement.executeQuery();
 
+            //실행결과 리절트셋에 할당됨.
+            resultSet.next();
+
             //해당내용 받기
            total= resultSet.getInt(1);
            resultSet.close();

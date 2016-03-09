@@ -87,26 +87,13 @@ public class EmpListServlet extends HttpServlet {
                     printWriter.println("<a href=EmpListServlet?page=" +(curpage<totalpage ? curpage+1 : curpage)+ ">");
                     printWriter.println("다음</a>&nbsp;&nbsp;&nbsp;");
 
-
+                    //전체페이지,현재페이지 출력
+                    printWriter.println(curpage + " 페이지 / " +"총" +totalpage +" 페이지");
                 printWriter.println("<td>");
             printWriter.println("</tr>");
 
 
         printWriter.println("</table>");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         printWriter.println("</center>");
         printWriter.println("</body>");
         printWriter.println("</html>");

@@ -38,6 +38,12 @@ public class EmpListServlet extends HttpServlet {
         //getOutputStream 에 쓰기
         PrintWriter printWriter=resp.getWriter();
         printWriter.println("<html>");
+
+        //추가(태스트)
+        printWriter.println("<style type=text/css>");
+        printWriter.println("td{font-family:맑은 고딕;font-size:9pt;bgcolor:yellow}");
+        printWriter.println("</style>");
+
         printWriter.println("<body>");
         printWriter.println("<center>");
         printWriter.println("<h3>사원들 목록</h3>");
@@ -65,7 +71,7 @@ public class EmpListServlet extends HttpServlet {
         //해당 내용 출력
         for(EmpDTO empDTO : empDTOList){
             printWriter.println("<tr>");
-                printWriter.println("<td align=center>" +empDTO.getEmpno()+"</td>");
+                printWriter.println("<td align=center, bgcolor=yellow>" +empDTO.getEmpno()+"</td>");
                 printWriter.println("<td align=center>" +empDTO.getEname()+ "</td>");
                 printWriter.println("<td align=center>" +empDTO.getJob()+ "</td>");
                 printWriter.println("<td align=center>" +empDTO.getHiredate()+ "</td>");

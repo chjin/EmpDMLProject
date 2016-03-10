@@ -147,6 +147,36 @@ public class EmpDAO {
         }
         return total;
     }
+
+
+    //기능 추가
+    //InsertServlet에서 직위목록 가져오기 함수
+    public List<String> empGetJob(){
+        //해당 목록 담아둘 컬렉션 생성
+        List<String> jobList=new ArrayList<>();
+
+        try{
+            getConnection();
+            //직위목록 가져오는 쿼리문 선언
+            String sql="SELECT DISTINCT job FROM emp";
+            //해당 스트링을 스트림 객체로 보내기
+            preparedStatement=connection.prepareStatement(sql);
+            //디비에 쿼리문 실행
+            ResultSet resultSet=preparedStatement.executeQuery();
+
+            //이제 리절트셋에  얻어온 직위 리스트를 출력함.
+            while(resultSet.next()){
+                jobList.add(resultSet.getString(1));
+            }
+            resultSet.close();
+        }catch (Exception ex){
+            System.out.println("empGetJob() : " +ex.getMessage());
+        }finally {
+            disConnection();
+        }
+
+        return jobList;
+    }
 }
 
 

@@ -47,6 +47,8 @@ public class EmpListServlet extends HttpServlet {
         printWriter.println("<body>");
         printWriter.println("<center>");
         printWriter.println("<h3>사원들 목록</h3>");
+        //폼태그 추가하기-등록, 취소 이벤트를 처리하기 위함.
+        printWriter.println("<form action=InsertServlet method=POST>");
         printWriter.println("<table border=0 width=500>");
             printWriter.println("<tr>");
                 printWriter.println("<td align=left>");
@@ -100,6 +102,8 @@ public class EmpListServlet extends HttpServlet {
 
 
         printWriter.println("</table>");
+        //닫는 폼태그 추가하기
+        printWriter.println("<form>");
         printWriter.println("</center>");
         printWriter.println("</body>");
         printWriter.println("</html>");

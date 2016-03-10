@@ -124,6 +124,15 @@ public class InsertServlet extends HttpServlet{
                     printWriter.println("<td>");
                 printWriter.println("<tr>");
 
+
+                //등록, 취소 버튼 추가하기
+                printWriter.println("<tr>");
+                    printWriter.println("<td colspan=2 align=center>");
+                        printWriter.println("<input type=submit value=등록>");
+                        printWriter.println("<input type=button value=취소 onclick=\"javascript:history.back() \"  >");
+                    printWriter.println("</td>");
+                printWriter.println("</tr>");
+
            printWriter.println("</table>");
 
 

@@ -20,9 +20,9 @@ public class EmpDAO {
     //오라클 디비 드라이버 클래스
     private final String DRIVER="oracle.jdbc.driver.OracleDriver";
     //유저 네임
-    private final String USER="scott";
+    private final String USER="scott5";
     //패스워드
-    private final String PWD="tiger";
+    private final String PWD="tiger5";
 
 
     //생성자(오라클 디비 드라이버 등록 작업)
@@ -201,10 +201,54 @@ public class EmpDAO {
         }finally {
             disConnection();
         }
-
-
         return mgrList;
+    }
 
+
+    /*
+
+         EMPNO
+         ENAME
+         JOB
+         MGR
+         HIREDATE
+         SAL
+         COMM
+         DEPTNO
+     */
+    //emp 테이블에 사원 등록하기 함수
+    public void empInsert(EmpDTO empDTO){
+        try{
+            getConnection();
+            //테이블에 사원데이터 등록 즉 입력하는 쿼리문 선언
+            String sql="INSERT INTO emp VALUES("
+                        +"(SELECT MAX(empno)+1 FROM emp),"
+                        +"?,?,?,SYSDATE,?,?,?)";
+
+/*            String sql="INSERT INTO emp (EMPNO, ENAME) VALUES("
+                    +"(SELECT MAX(empno)+1 FROM emp),"
+                    +"?)";*/
+            //해당 쿼리문 스트림 객체로 보내기 위한 객체 획득.
+            preparedStatement=connection.prepareStatement(sql);
+            //해당 스트림 객체에 입력하는 각 값들을 각각의 필드에 설정하기
+            //디비 필드 타입에 맞게 최종 셋팅함.
+            preparedStatement.setString(1, empDTO.getEname());
+            preparedStatement.setString(2, empDTO.getJob());
+            preparedStatement.setInt(3, empDTO.getMgr());
+            preparedStatement.setInt(4, empDTO.getSal());
+            preparedStatement.setInt(5, empDTO.getComm());
+            preparedStatement.setInt(6, empDTO.getDeptno());
+
+
+            //해당 쿼리문 실행하기
+            preparedStatement.executeUpdate();
+
+
+        }catch (Exception ex){
+            System.out.println("empInsert() : " +ex.getMessage());
+        }finally {
+            disConnection();
+        }
     }
 
 

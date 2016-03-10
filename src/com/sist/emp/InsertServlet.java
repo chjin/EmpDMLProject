@@ -1,6 +1,7 @@
 package com.sist.emp;
 
 import com.sist.dao.EmpDAO;
+import com.sist.dao.EmpDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,8 @@ public class InsertServlet extends HttpServlet{
         printWriter.println("<center>");
         printWriter.println("<h3>사원 등록하기</h3>");
 
-        printWriter.println("<form>");
+        //이벤트 처리위해 폼추가하고 action,method 속성주기.
+        printWriter.println("<form action=InsertServlet method=POST>");
             //테이블 생성하기
             printWriter.println("<table border=1 bordercolor=blue width=300 cellspacing=0>");
                 printWriter.println("<tr>");
@@ -45,6 +47,7 @@ public class InsertServlet extends HttpServlet{
                         printWriter.println("<input type=text size=12 name=ename>");
                     printWriter.println("</td>");
                 printWriter.println("</tr>");
+
 
 
 
@@ -125,6 +128,7 @@ public class InsertServlet extends HttpServlet{
                 printWriter.println("<tr>");
 
 
+
                 //등록, 취소 버튼 추가하기
                 printWriter.println("<tr>");
                     printWriter.println("<td colspan=2 align=center>");
@@ -144,6 +148,45 @@ public class InsertServlet extends HttpServlet{
         printWriter.println("<center>");
         printWriter.println("</body>");
         printWriter.println("</html>");
+    }
+
+
+    //등록페이지에서 등록 이벤트 선택시 일어남.
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //사원 등록하기에서 등록되는 데이터 자체에 대한 설정
+        req.setCharacterEncoding("EUC-KR");
+        //테이블에서 입력되는 각 데이터에 대한 값을 저장하는 각 변수선언.
+        //전부 String 타입 변수로 입력하는 사원정보를 받아줌.
+        String ename=req.getParameter("ename");
+        String job=req.getParameter("job");
+        String mgr=req.getParameter("mgr");
+        String sal=req.getParameter("sal");
+        String comm=req.getParameter("comm");
+        String deptno=req.getParameter("deptno");
+
+        //입력된 값을 저장한 각 변수 콘솔출력
+        System.out.println(ename);
+
+        //위에 각 컬럼당 임시 저장된 데이터를 AO객체로 셋팅해줌.
+        //우선 해당 AO 객체 생성
+        EmpDTO empDTO=new EmpDTO();
+        //해당 AO의 각 필드 항목을 입력된 값으로 셋팅하기
+        empDTO.setEname(ename);
+        empDTO.setJob(job);
+        empDTO.setMgr(Integer.parseInt(mgr));
+        empDTO.setSal(Integer.parseInt(sal));
+        empDTO.setComm(Integer.parseInt(comm));
+        empDTO.setDeptno(Integer.parseInt(deptno));
+
+
+        //각 필드에 셋팅된 AO를 dao기능의 insert 함수호출하여 실제 디비에 데이터 입력하기
+        //우선 dao 객체 생성
+        EmpDAO empDAO=new EmpDAO();
+        empDAO.empInsert(empDTO);
+
+        //디비에 insert되고 나서 자동으로 페이지 이동하기
+        resp.sendRedirect("EmpListServlet");
     }
 }
 

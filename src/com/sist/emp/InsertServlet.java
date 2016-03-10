@@ -98,8 +98,17 @@ public class InsertServlet extends HttpServlet{
 
 
                 //다섯번째 줄-성과급 추가(직원등록 페이지)
-                
-
+                printWriter.println("<tr>");
+                    printWriter.println("<td width=25% align=right>성과급</td>");
+                    printWriter.println("<td width=75% align=left>");
+                        printWriter.println("<select name=comm>");
+                            printWriter.println("<option>0</option>");
+                            printWriter.println("<option>100</option>");
+                            printWriter.println("<option>200</option>");
+                            printWriter.println("<option>300</option>");
+                        printWriter.println("</select>");
+                    printWriter.println("</td>");
+                printWriter.println("</tr>");
 
            printWriter.println("</table>");
 

@@ -174,9 +174,55 @@ public class EmpDAO {
         }finally {
             disConnection();
         }
-
         return jobList;
     }
+
+    //기능 추가
+    //디비에서 사수 리스트 얻기
+    public List<Integer> empGetMgr(){
+        //컬렉션으로 디비로부터 사수직원 사원번호 리스트 얻기.
+        List<Integer> mgrList=new ArrayList<>();
+
+        try{
+            getConnection();
+            //사수직원번호 쿼리문 선언
+            String sql="SELECT DISTINCT mgr FROM emp WHERE mgr IS NOT NULL";
+            //해당 쿼리문 스트림 객체통해 보내기
+            preparedStatement=connection.prepareStatement(sql);
+            //해당 쿼리문 실행하기
+            ResultSet resultSet=preparedStatement.executeQuery();
+            //실행된 사수직원번호를 컬랙션에 추가하기
+            while(resultSet.next()){
+                mgrList.add(resultSet.getInt(1));
+            }
+            resultSet.close();
+        }catch (Exception ex){
+            System.out.println("empGetMgr() : " +ex.getMessage());
+        }finally {
+            disConnection();
+        }
+
+
+        return mgrList;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

@@ -23,7 +23,10 @@ public class InsertServlet extends HttpServlet{
         //사원등록 부분에서 필요한 데이터 db에서 받아오기.
         //DAO 객체 우선 생성
         EmpDAO empDAO=new EmpDAO();
-        List<String> jobList=empDAO.empGetJob();
+        List<String> jobList=empDAO.empGetJob();        //직위목록 가져오기
+        // 사수직원번호 가져오기
+        List<Integer> mgrList=empDAO.empGetMgr();
+
 
         PrintWriter printWriter=resp.getWriter();
 
@@ -67,6 +70,11 @@ public class InsertServlet extends HttpServlet{
                     printWriter.println("<td width=25% align=right>내선임</td>");
                     printWriter.println("<td width=75% align=left>");
                         printWriter.println("<select name=mgr>");
+                            for(int mgr : mgrList){
+                                printWriter.println("<option>");
+                                printWriter.println(mgr);
+                                printWriter.println("</option>");
+                            }
                         printWriter.println("</select>");
                     printWriter.println("</td>");
                 printWriter.println("<tr>");
